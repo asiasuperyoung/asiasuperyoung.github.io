@@ -182,7 +182,7 @@ function populateTableEntry(trainee) {
   <div class="table__entry ${eliminated}">
     <div class="table__entry-icon">
       <img class="table__entry-img" src="assets/trainees/${trainee.image}" />
-      <div class="table__entry-icon-border ${trainee.eval}-rank-border"></div>
+      <div class="table__entry-icon-border ${trainee.eval.toLowerCase()}-rank-border"></div>
       ${
         top7 ? '<div class="table__entry-icon-crown"></div>' : ''
       }
