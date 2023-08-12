@@ -239,7 +239,7 @@ const abbreviatedCompanies = {
 }
 
 function populateRankingEntry(trainee, currRank) {
-  let modifiedCompany = traineeArray[3].toUpperCase();
+  let modifiedCompany = trainee.company.toUpperCase();
   modifiedCompany = modifiedCompany.replace("ENTERTAINMENT", "ENT.");
   if (abbreviatedCompanies[modifiedCompany]) {
     modifiedCompany = abbreviatedCompanies[modifiedCompany];
@@ -394,7 +394,7 @@ var trainees = [];
 var filteredTrainees = [];
 // holds the ordered list of rankings that the user selects
 var ranking = newRanking();
-const rowNums = [1, 2, 4, 5];
+const rowNums = [1, 3, 5];
 //window.addEventListener("load", function () {
   populateRanking();
   readFromCSV("./trainee_info.csv");
