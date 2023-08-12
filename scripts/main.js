@@ -69,20 +69,25 @@ trainee: {
   image: ...
   selected: false/true // whether user selected them
   eliminated: false/true
-  top7: false/true
+  top12: false/true
 }
 */
 function convertCSVArrayToTraineeData(csvArrays) {
   trainees = csvArrays.map(function(traineeArray, index) {
     trainee = {};
     trainee.name_romanized = traineeArray[0];
-    trainee.name_hangul = traineeArray[2];
-    trainee.name_japanese = traineeArray[1];
+    if (traineeArray[2] === "-") {
+      // trainee only has hangul
+      trainee.name_hangul = traineeArray[1];
+    } else {
+      trainee.name_japanese = traineeArray[1];
+      trainee.name_hangul = traineeArray[2];
+    }
     trainee.company = traineeArray[3];
     trainee.grade = traineeArray[4];
     trainee.birthyear = traineeArray[5];
     trainee.eliminated = traineeArray[6] === 'e'; // sets trainee to be eliminated if 'e' appears in 6th col
-    trainee.top7 = traineeArray[6] === 't'; // sets trainee to top 7 if 't' appears in 6th column
+    trainee.top7 = traineeArray[6] === 't'; // sets trainee to top 12 if 't' appears in 6th column
     trainee.id = parseInt(traineeArray[7]) - 1; // trainee id is the original ordering of the trainees in the first csv
     trainee.image =
       trainee.name_romanized.replace(" ", "").replace("-", "") + ".jpg";
@@ -106,7 +111,7 @@ function newTrainee() {
 // Constructor for a blank ranking list
 function newRanking() {
   // holds the ordered list of rankings that the user selects
-  let ranking = new Array(7);
+  let ranking = new Array(12);
   for (let i = 0; i < ranking.length; i++) {
     ranking[i] = newTrainee();
   }
@@ -234,7 +239,6 @@ function populateRanking() {
 }
 
 const abbreviatedCompanies = {
-  "ONE COOL JASCO": "OCJ",
   "INDIVIDUAL TRAINEE": "INDIVIDUAL",
 }
 
