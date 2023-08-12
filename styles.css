@@ -14,11 +14,11 @@
   --checked-blue: #052ae2CC;
 
   /* ranking border colors */
-  --a-rank: #fb4a8c;
-  --b-rank: #fc840c;
-  --c-rank: #ffc407;
-  --d-rank: #19b468;
-  --f-rank: #a6a6a4;
+  --A-rank: #fb4a8c;
+  --B-rank: #fc840c;
+  --C-rank: #ffc407;
+  --D-rank: #19b468;
+  --F-rank: #a6a6a4;
   --no-rank: #707070;
 }
 
