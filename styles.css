@@ -59,7 +59,14 @@ body {
   color: #aeaeae;
   font-size: 12px;
 }
-
+/* Styles for footer */
+#footer {
+  font-family: 'Roboto Condensed', sans-serif;
+  color: #888;
+  font-size: 12px;
+  background: #eee; 
+  padding: 15px;
+}
 /* Styles for table */
 #table {
   height: 40vh;
