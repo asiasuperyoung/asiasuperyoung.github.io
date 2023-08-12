@@ -87,7 +87,7 @@ function convertCSVArrayToTraineeData(csvArrays) {
     trainee.grade = traineeArray[4];
     trainee.birthyear = traineeArray[5];
     trainee.eliminated = traineeArray[6] === 'e'; // sets trainee to be eliminated if 'e' appears in 6th col
-    trainee.top7 = traineeArray[6] === 't'; // sets trainee to top 12 if 't' appears in 6th column
+    trainee.top12 = traineeArray[6] === 't'; // sets trainee to top 12 if 't' appears in 6th column
     trainee.id = parseInt(traineeArray[7]) - 1; // trainee id is the original ordering of the trainees in the first csv
     trainee.image =
       trainee.name_romanized.replace(" ", "").replace("-", "") + ".jpg";
@@ -177,14 +177,14 @@ function populateTable(trainees) {
 function populateTableEntry(trainee) {
   // eliminated will have value "eliminated" only if trainee is eliminated and showEliminated is true, otherwise this is ""
   let eliminated = (showEliminated && trainee.eliminated) && "eliminated";
-  let top7 = (showTop7 && trainee.top7) && "top7";
+  let top12 = (showTop12 && trainee.top12) && "top12";
   const tableEntry = `
   <div class="table__entry ${eliminated}">
     <div class="table__entry-icon">
       <img class="table__entry-img" src="assets/trainees/${trainee.image}" />
       <div class="table__entry-icon-border ${trainee.grade.toLowerCase()}-rank-border"></div>
       ${
-        top7 ? '<div class="table__entry-icon-crown"></div>' : ''
+        top12 ? '<div class="table__entry-icon-crown"></div>' : ''
       }
       ${
         trainee.selected ? '<img class="table__entry-check" src="assets/check.png"/>' : ""
@@ -239,6 +239,8 @@ function populateRanking() {
 }
 
 const abbreviatedCompanies = {
+  "RAINBOW BRIDGE WORLD": "RBW",
+  "BLOCKBERRY CREATIVE": "BBC",
   "INDIVIDUAL TRAINEE": "INDIVIDUAL",
 }
 
@@ -249,7 +251,7 @@ function populateRankingEntry(trainee, currRank) {
     modifiedCompany = abbreviatedCompanies[modifiedCompany];
   }
   let eliminated = (showEliminated && trainee.eliminated) && "eliminated";
-  let top7 = (showTop7 && trainee.top7) && "top7";
+  let top12 = (showTop12 && trainee.top12) && "top12";
   const rankingEntry = `
   <div class="ranking__entry ${eliminated}">
     <div class="ranking__entry-view">
@@ -259,7 +261,7 @@ function populateRankingEntry(trainee, currRank) {
       </div>
       <div class="ranking__entry-icon-badge bg-${trainee.grade.toLowerCase()}">${currRank}</div>
       ${
-        top7 ? '<div class="ranking__entry-icon-crown"></div>' : ''
+        top12 ? '<div class="ranking__entry-icon-crown"></div>' : ''
       }
     </div>
     <div class="ranking__row-text">
@@ -317,7 +319,28 @@ function swapTrainees(index1, index2) {
 // <original> is the original name as appearing on csv
 // all of it should be lower case
 const alternateRomanizations = {
-
+  'heo yunjin': ['heo yoonjin', 'huh yoonjin', 'huh yunjin'],
+  'go yujin': ['ko yoojin', 'ko yujin', 'go yoojin'],
+  'kim yubin': ['kim yoobin'],
+  'lee yoojun': ['lee yujeong'],
+  'shin suhyun': ['shin soohyun', 'shin soohyeon', 'shin suhyeon'],
+  'jo ahyoung': ['cho ahyoung', 'cho ahyeong'],
+  'yu minyoung': ['yoo minyeong', 'yu minyeong', 'yoo minyoung'],
+  'park haeyoon': ['park haeyun'],
+  'park jinhee': ['jinny park'],
+  'jo sarang': ['cho sarang'],
+  'park chanju': ['park chanjoo'],
+  'lee gaeun': ['lee kaeun'],
+  'na goeun': ['na koeun'],
+  'ahn yujin': ['ahn yoojin'],
+  'jo gahyun': ['cho gahyun', 'jo kahyun', 'cho kahyun', 'jo kahyeon', 'cho kahyeon'],
+  'jo yuri': ['cho yuri'],
+  'yoon haesol': ['yun haesol'],
+  'kim minju': ['kim minjoo'],
+  'lee seunghyun': ['lee seunghyeon'],
+  'jo yeongin': ['cho yeongin', 'cho youngin', 'jo youngin'],
+  'kim suyun': ['kim sooyoon'],
+  'kim sihyun': ['kim shihyun', 'kim sihyeon']
 };
 
 // uses the current filter text to create a subset of trainees with matching info
@@ -366,7 +389,7 @@ function removeRankedTrainee(trainee) {
   return false;
 }
 
-const currentURL = "https://asiasuperyoung.github.io/";
+const currentURL = "https://produce48.github.io/";
 // Serializes the ranking into a string and appends that to the current URL
 function generateShareLink() {
   let shareCode = ranking.map(function (trainee) {
@@ -398,7 +421,7 @@ var trainees = [];
 var filteredTrainees = [];
 // holds the ordered list of rankings that the user selects
 var ranking = newRanking();
-const rowNums = [1, 3, 5];
+const rowNums = [1, 2, 4, 5];
 //window.addEventListener("load", function () {
   populateRanking();
   readFromCSV("./trainee_info.csv");
