@@ -239,7 +239,7 @@ const abbreviatedCompanies = {
 }
 
 function populateRankingEntry(trainee, currRank) {
-  let modifiedCompany = trainee.company.toUpperCase();
+  let modifiedCompany = traineeArray[3].toUpperCase();
   modifiedCompany = modifiedCompany.replace("ENTERTAINMENT", "ENT.");
   if (abbreviatedCompanies[modifiedCompany]) {
     modifiedCompany = abbreviatedCompanies[modifiedCompany];
