@@ -64,7 +64,7 @@ trainee: {
   name_hangul: ...
   name_japanese: ...
   affiliation: ...
-  grade: a/b/c/d/f
+  eval: a/b/c/d/f
   birthyear: ...
   image: ...
   selected: false/true // whether user selected them
@@ -84,7 +84,7 @@ function convertCSVArrayToTraineeData(csvArrays) {
       trainee.name_hangul = traineeArray[2];
     }
     trainee.affiliation = traineeArray[3];
-    trainee.grade = traineeArray[4];
+    trainee.eval = traineeArray[4];
     trainee.birthyear = traineeArray[5];
     trainee.eliminated = traineeArray[6] === 'e'; // sets trainee to be eliminated if 'e' appears in 6th col
     trainee.top7 = traineeArray[6] === 't'; // sets trainee to top 7 if 't' appears in 6th column
@@ -103,7 +103,7 @@ function newTrainee() {
     id: -1, // -1 denotes a blank trainee spot
     name_romanized: '&#8203;', // this is a blank character
     affiliation: '&#8203;', // this is a blank character
-    grade: 'no',
+    eval: 'no',
     image: 'emptyrank.png',
   };
 }
@@ -182,7 +182,7 @@ function populateTableEntry(trainee) {
   <div class="table__entry ${eliminated}">
     <div class="table__entry-icon">
       <img class="table__entry-img" src="assets/trainees/${trainee.image}" />
-      <div class="table__entry-icon-border ${trainee.grade.toLowerCase()}-rank-border"></div>
+      <div class="table__entry-icon-border ${trainee.eval.toLowerCase()}-rank-border"></div>
       ${
         top7 ? '<div class="table__entry-icon-crown"></div>' : ''
       }
@@ -256,9 +256,9 @@ function populateRankingEntry(trainee, currRank) {
     <div class="ranking__entry-view">
       <div class="ranking__entry-icon">
         <img class="ranking__entry-img" src="assets/trainees/${trainee.image}" />
-        <div class="ranking__entry-icon-border ${trainee.grade.toLowerCase()}-rank-border" data-rankid="${currRank-1}"></div>
+        <div class="ranking__entry-icon-border ${trainee.eval.toLowerCase()}-rank-border" data-rankid="${currRank-1}"></div>
       </div>
-      <div class="ranking__entry-icon-badge bg-${trainee.grade.toLowerCase()}">${currRank}</div>
+      <div class="ranking__entry-icon-badge bg-${trainee.eval.toLowerCase()}">${currRank}</div>
       ${
         top7 ? '<div class="ranking__entry-icon-crown"></div>' : ''
       }
