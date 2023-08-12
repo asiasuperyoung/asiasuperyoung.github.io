@@ -1,7 +1,7 @@
 /* define constants up here */
 :root {
-  --banner-bg-start: #fd5e6d;
-  --banner-bg-end: #ef5079;
+  --banner-bg-start: #250436;
+  --banner-bg-end: #310668;
   --produce-gray: #e4e4e4;
   --search-text-gray: #949494;
   --search-gray: #f2f2f2;
@@ -14,7 +14,7 @@
   --checked-blue: #052ae2CC;
 
   /* ranking border colors */
-  --a-rank: #fb4a8c;
+  --a-rank: #250436;
   --b-rank: #fc840c;
   --c-rank: #ffc407;
   --d-rank: #19b468;
@@ -56,7 +56,7 @@ body {
 }
 #banner-subtitle {
   font-family: 'Roboto Condensed', sans-serif;
-  color: #f3cdd3;
+  color: #aeaeae;
   font-size: 12px;
 }
 
@@ -121,7 +121,7 @@ body {
   color: white;
 }
 #getlink-button:active { /* these styles are active while get link is being pressed */
-  background-color: #ff2475;
+  background-color: #310668;
 }
 #getlink-textbox {
   margin-left: 5px;
